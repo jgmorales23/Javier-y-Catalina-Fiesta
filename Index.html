@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javier & Catalina — 19.12.26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --cream: #f4efe2;
+    --cream-soft: #eee7d6;
+    --ink: #2f2b22;
+    --sage: #8a9678;
+    --sage-deep: #6f7c5e;
+    --sage-pale: #c9d1ba;
+    --gold: #d4a441;
+    --line-w: 2px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  a{ color: inherit; }
+
+  .reveal{
+    opacity:0;
+    transform: translateY(18px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.is-visible{ opacity:1; transform: translateY(0); }
+
+  /* ---------- Scallop frame (signature element) ---------- */
+  .scallop-frame{
+    position: relative;
+    width: calc(100% - 24px);
+    margin: 20px auto 30px;
+    max-width: 760px;
+    padding: 46px 30px 36px;
+  }
+  @media (min-width: 720px){
+    .scallop-frame{
+      width: calc(100% - 60px);
+      max-width: 1040px;
+      padding: 60px 56px 46px;
+    }
+  }
+  @media (min-width: 1100px){
+    .scallop-frame{
+      max-width: 1200px;
+      padding: 68px 70px 54px;
+    }
+  }
+  .scallop-frame::before,
+  .scallop-frame::after{
+    content:"";
+    position: absolute;
+    left: 22px; right: 22px;
+    height: 22px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='24' viewBox='0 0 60 24'><path d='M0 12 C 8 -3 22 -3 30 12 C 38 27 52 27 60 12' fill='none' stroke='%238a9678' stroke-width='3'/></svg>");
+    background-size: 60px 22px;
+    background-repeat: repeat-x;
+    background-position: center;
+  }
+  .scallop-frame::before{ top: 0; }
+  .scallop-frame::after{ bottom: 0; }
+  .scallop-frame .side-l,
+  .scallop-frame .side-r{
+    content:"";
+    position: absolute;
+    top: 22px; bottom: 22px;
+    width: 22px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='60' viewBox='0 0 24 60'><path d='M12 0 C -3 8 -3 22 12 30 C 27 38 27 52 12 60' fill='none' stroke='%238a9678' stroke-width='3'/></svg>");
+    background-size: 22px 60px;
+    background-repeat: repeat-y;
+    background-position: center;
+  }
+  .scallop-frame .side-l{ left: 0; }
+  .scallop-frame .side-r{ right: 0; }
+  .scallop-frame .corner{
+    position:absolute; width:30px; height:30px;
+  }
+  .scallop-frame .corner svg{ width:100%; height:100%; }
+  .scallop-frame .corner.tl{ top:-2px; left:-2px; }
+  .scallop-frame .corner.tr{ top:-2px; right:-2px; transform: scaleX(-1); }
+  .scallop-frame .corner.bl{ bottom:-2px; left:-2px; transform: scaleY(-1); }
+  .scallop-frame .corner.br{ bottom:-2px; right:-2px; transform: scale(-1,-1); }
+
+  /* ---------- Hero ---------- */
+  .hero{ text-align:center; }
+  .stars{ margin-bottom: 6px; }
+  .names{
+    font-family: 'Parisienne', cursive;
+    font-size: clamp(2.6rem, 9vw, 4.2rem);
+    color: var(--ink);
+    line-height: 1;
+    margin: 6px 0 18px;
+  }
+  .names .amp{ color: var(--sage-deep); padding: 0 6px; }
+
+  .illustration{ width: min(340px, 78%); margin: 6px auto 20px; display:block; }
+  .illustration.banner{ width: 100%; max-width: 560px; margin: 4px auto 22px; }
+  .planet-phrase{
+    font-family:'Parisienne', cursive; font-size:1.3rem; color: var(--sage);
+    text-align:center; margin: -8px 0 20px;
+  }
+
+  .eyebrow{
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    font-size: clamp(1.1rem, 3.2vw, 1.4rem);
+    margin: 40px 0 22px;
+    padding-left: .35em;
+  }
+
+  .save-the-date{
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    font-size: clamp(1.15rem, 3.4vw, 1.55rem);
+    margin: 4px 0 6px;
+    padding-left: .35em; /* optical centering for letter-spacing */
+  }
+  .date-big{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--sage-deep);
+    font-size: clamp(2.6rem, 9vw, 3.6rem);
+    letter-spacing: .04em;
+    margin: 2px 0 4px;
+  }
+  .place-script{
+    font-family: 'Parisienne', cursive;
+    color: var(--sage);
+    font-size: clamp(1.4rem, 4.5vw, 1.9rem);
+  }
+
+  .scroll-cue{
+    display:block; margin: 30px auto 4px;
+    font-size: .72rem; letter-spacing:.28em; text-transform:uppercase;
+    color: var(--sage-deep); opacity:.75;
+  }
+  .scroll-cue::after{
+    content:""; display:block; width:1px; height:26px; margin: 8px auto 0;
+    background: var(--sage-deep); opacity:.6;
+    animation: drip 1.8s ease-in-out infinite;
+  }
+  @keyframes drip{ 0%,100%{ transform: scaleY(1); opacity:.6;} 50%{ transform: scaleY(.4); opacity: .2;} }
+
+  /* ---------- Sections ---------- */
+  section{ max-width: 640px; margin: 0 auto; padding: 52px 26px; }
+  .divider{
+    width: 60px; height: 1px; background: var(--sage-pale); margin: 0 auto 34px;
+  }
+  h2.section-title{
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    text-align:center;
+    color: var(--sage-deep);
+    font-size: 1.05rem;
+    margin: 0 0 6px;
+  }
+  .section-sub{
+    text-align:center; font-family:'Parisienne', cursive;
+    color: var(--sage); font-size: 1.6rem; margin: 0 0 30px;
+  }
+
+  /* countdown */
+  .countdown{
+    display:flex; justify-content:center; gap: clamp(10px,4vw,26px); flex-wrap: wrap;
+  }
+  .countdown .unit{ text-align:center; min-width: 68px; }
+  .countdown .num{
+    font-family:'Cormorant Garamond', serif; font-weight:600;
+    font-size: clamp(2.1rem, 7vw, 2.8rem); color: var(--ink);
+    background: var(--cream-soft);
+    border: 1px solid var(--sage-pale);
+    border-radius: 4px;
+    padding: 14px 4px 8px;
+    display:block;
+  }
+  .countdown .lbl{
+    display:block; margin-top:8px; font-size:.68rem; letter-spacing:.18em;
+    text-transform:uppercase; color: var(--sage-deep);
+  }
+
+  /* details */
+  .detail-row{
+    display:flex; gap: 18px; align-items:flex-start;
+    padding: 16px 0; border-bottom: 1px solid var(--sage-pale);
+  }
+  .detail-row:last-of-type{ border-bottom:none; }
+  .detail-icon{ width:26px; height:26px; flex:none; margin-top:3px; color: var(--sage-deep); }
+  .detail-icon svg{ width:100%; height:100%; }
+  .detail-title{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.15rem; margin:0 0 2px; }
+  .detail-text{ margin:0; font-size:.95rem; line-height:1.5; color:#4a4636; }
+
+  .map-wrap{ margin-top: 22px; border-radius: 6px; overflow:hidden; border:1px solid var(--sage-pale); }
+  .map-wrap iframe{ width:100%; height: 280px; border:0; display:block; }
+  .btn-row{ text-align:center; margin-top: 18px; }
+
+  .btn{
+    display:inline-block; font-family:'Jost',sans-serif; font-size:.85rem; letter-spacing:.14em;
+    text-transform: uppercase; text-decoration:none; color: var(--cream);
+    background: var(--sage-deep); padding: 13px 28px; border-radius: 3px;
+    border: 1px solid var(--sage-deep); cursor:pointer;
+    transition: background .25s ease, color .25s ease;
+  }
+  .btn:hover{ background: transparent; color: var(--sage-deep); }
+  .btn.outline{ background: transparent; color: var(--sage-deep); }
+  .btn.outline:hover{ background: var(--sage-deep); color: var(--cream); }
+
+  /* gifts */
+  .gift-options{ display:grid; gap:20px; grid-template-columns: 1fr; }
+  @media (min-width: 560px){ .gift-options{ grid-template-columns: 1fr 1fr; } }
+  .gift-card{
+    background: var(--cream-soft); border:1px solid var(--sage-pale); border-radius:6px;
+    padding: 26px 22px; text-align:center;
+  }
+  .gift-card h3{ font-family:'Cormorant Garamond', serif; font-size:1.25rem; margin:0 0 8px; font-weight:600; }
+  .gift-card p{ font-size:.88rem; color:#4a4636; margin:0 0 16px; line-height:1.5; }
+
+  /* mensaje de los novios */
+  .love-msg{ text-align:center; font-size:1rem; line-height:1.9; color:#4a4636; max-width:500px; margin:0 auto; }
+  .love-msg .sign{
+    display:block; font-family:'Parisienne', cursive; font-size:1.8rem;
+    color: var(--sage-deep); font-weight:400; margin-top:24px;
+  }
+
+  /* itinerario */
+  .timeline{ position:relative; padding-left: 34px; }
+  .timeline::before{
+    content:""; position:absolute; left:9px; top:6px; bottom:6px; width:1px; background: var(--sage-pale);
+  }
+  .timeline-item{ position:relative; padding-bottom:30px; }
+  .timeline-item:last-child{ padding-bottom:0; }
+  .timeline-item::before{
+    content:""; position:absolute; left:-34px; top:2px; width:19px; height:19px; border-radius:50%;
+    background: var(--cream); border:2px solid var(--sage-deep);
+  }
+  .timeline-time{ font-family:'Cormorant Garamond', serif; font-weight:600; color: var(--sage-deep); font-size:1.15rem; margin:0 0 2px; }
+  .timeline-text{ margin:0; font-size:.92rem; color:#4a4636; line-height:1.5; }
+
+  /* dress code */
+  .dresscode-box{ text-align:center; }
+  .dresscode-box p{ font-size:.95rem; line-height:1.75; color:#4a4636; max-width:460px; margin:0 auto 16px; }
+  .dresscode-tag{
+    display:inline-block; font-family:'Cormorant Garamond', serif; letter-spacing:.15em; text-transform:uppercase;
+    color: var(--sage-deep); border:1px solid var(--sage-pale); border-radius:20px; padding:7px 20px; font-size:.85rem;
+  }
+
+  /* recomendaciones */
+  .rec-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:20px; }
+  .rec-list li{ display:flex; gap:14px; align-items:flex-start; }
+  .rec-icon{ width:24px; height:24px; flex:none; margin-top:2px; color: var(--sage-deep); }
+  .rec-icon svg{ width:100%; height:100%; }
+  .rec-title{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.05rem; margin:0 0 3px; }
+  .rec-text{ margin:0; font-size:.9rem; color:#4a4636; line-height:1.5; }
+  .rec-links{ margin-top:8px; display:flex; gap:14px; flex-wrap:wrap; }
+  .rec-links a{ font-size:.78rem; text-decoration:underline; color: var(--sage-deep); }
+
+  /* nuestra canción */
+  .song-wrap{ max-width:420px; margin:0 auto; border-radius:12px; overflow:hidden; }
+  .song-play-btn{
+    display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
+    font-family:'Jost',sans-serif; font-size:.9rem; letter-spacing:.05em; color: var(--cream);
+    background: var(--sage-deep); border: 1px solid var(--sage-deep); border-radius: 8px;
+    padding: 16px 20px; cursor:pointer; transition: background .25s ease, color .25s ease;
+  }
+  .song-play-btn:hover{ background: transparent; color: var(--sage-deep); }
+  .song-wrap iframe{ display:block; width:100%; height:210px; border:0; border-radius:12px; }
+  .song-fallback{ text-align:center; font-size:.8rem; color:#8a8570; margin-top:12px; }
+  .song-fallback a{ color: var(--sage-deep); text-decoration:underline; }
+
+  /* galería */
+  .gallery-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap:10px;
+  }
+  @media (min-width:560px){ .gallery-grid{ grid-template-columns: repeat(3, 1fr); } }
+  .gallery-item{
+    padding:0; border:none; background:none; cursor:pointer; border-radius:6px; overflow:hidden;
+    aspect-ratio: 1 / 1; display:block;
+  }
+  .gallery-item img{
+    width:100%; height:100%; object-fit:cover; display:block; transition: transform .35s ease;
+  }
+  .gallery-item:hover img{ transform: scale(1.05); }
+
+  .lightbox{
+    display:none; position:fixed; inset:0; background: rgba(30,28,22,.92);
+    z-index:999; align-items:center; justify-content:center; padding:24px;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{ max-width:100%; max-height:90vh; border-radius:4px; }
+  .lightbox-close{
+    position:absolute; top:18px; right:24px; background:none; border:none;
+    color:#f4efe2; font-size:2rem; line-height:1; cursor:pointer;
+  }
+
+  .bank-details{
+    text-align:left; font-size:.9rem; margin: 14px 0 18px; color:#3a362b;
+    background: var(--cream); border:1px dashed var(--sage-pale); border-radius:4px; padding: 14px 16px;
+  }
+  .bank-details div{ display:flex; justify-content:space-between; gap:10px; padding:4px 0; }
+  .bank-details span.k{ color:#7a7460; }
+  .copy-btn{
+    background:none; border:1px solid var(--sage-pale); color: var(--sage-deep);
+    font-family:'Jost',sans-serif; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase;
+    padding: 3px 9px; border-radius:3px; cursor:pointer; margin-top: 6px;
+  }
+  .copy-btn:hover{ background: var(--sage-pale); }
+
+  /* rsvp */
+  form.rsvp{ display:flex; flex-direction:column; gap:16px; }
+  .field label{
+    display:block; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color: var(--sage-deep); margin-bottom:6px;
+  }
+  .field input[type=text],
+  .field input[type=email],
+  .field select,
+  .field textarea{
+    width:100%; font-family:'Jost',sans-serif; font-size:.95rem; color: var(--ink);
+    background: var(--cream-soft); border:1px solid var(--sage-pale); border-radius:4px;
+    padding: 11px 12px; outline:none; transition: border-color .2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{ border-color: var(--sage-deep); }
+  .field textarea{ resize: vertical; min-height: 80px; font-family:'Jost',sans-serif; }
+  .field-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .field-row > .field{ flex:1 1 200px; }
+  .rsvp-submit{ margin-top:6px; align-self:center; }
+  .conditional-fields{ display:flex; flex-direction:column; gap:16px; }
+  .conditional-fields.hidden{ display:none; }
+  .menu-intro{ font-size:.88rem; line-height:1.65; color:#4a4636; background: var(--cream-soft); border:1px solid var(--sage-pale); border-radius:6px; padding:14px 16px; margin:0; }
+  .playlist-box{
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    background: var(--cream-soft); border:1px solid var(--sage-pale); border-radius:8px;
+    padding:16px 18px; margin: -2px 0 4px;
+  }
+  .playlist-icon{ font-size:1.6rem; flex:none; }
+  .playlist-title{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1rem; margin:0; color: var(--ink); }
+  .playlist-sub{ font-size:.8rem; color:#6f6a56; margin:2px 0 0; }
+  .playlist-box .btn{ margin-left:auto; padding:10px 20px; font-size:.78rem; }
+  @media (max-width:480px){ .playlist-box .btn{ margin-left:0; width:100%; text-align:center; } }
+  .rsvp-note{
+    text-align:center; font-size:.8rem; color:#7a7460; margin-top:-4px;
+  }
+  #rsvp-msg{ text-align:center; font-size:.9rem; margin-top:10px; min-height:1.2em; }
+  #rsvp-msg.ok{ color: var(--sage-deep); }
+  #rsvp-msg.err{ color:#a15353; }
+
+  footer{
+    text-align:center; padding: 40px 24px 60px; color: var(--sage-deep);
+  }
+  footer .fname{ font-family:'Parisienne', cursive; font-size:1.7rem; display:block; margin-bottom:4px; }
+  footer small{ font-size:.7rem; letter-spacing:.1em; color:#8a8570; }
+
+</style>
+</head>
+<body>
+
+<div class="scallop-frame">
+  <span class="side-l"></span><span class="side-r"></span>
+  <span class="corner tl"><svg viewBox="0 0 30 30"><path d="M2 22 C 2 8 8 2 22 2" fill="none" stroke="#8a9678" stroke-width="3"/></svg></span>
+  <span class="corner tr"><svg viewBox="0 0 30 30"><path d="M2 22 C 2 8 8 2 22 2" fill="none" stroke="#8a9678" stroke-width="3"/></svg></span>
+  <span class="corner bl"><svg viewBox="0 0 30 30"><path d="M2 22 C 2 8 8 2 22 2" fill="none" stroke="#8a9678" stroke-width="3"/></svg></span>
+  <span class="corner br"><svg viewBox="0 0 30 30"><path d="M2 22 C 2 8 8 2 22 2" fill="none" stroke="#8a9678" stroke-width="3"/></svg></span>
+
+<!-- ============ HERO ============ -->
+<div class="hero reveal">
+  <svg class="stars" width="70" height="34" viewBox="0 0 70 34" fill="none">
+    <g fill="#d4a441">
+      <path d="M20 2 L22 9 L29 11 L22 13 L20 20 L18 13 L11 11 L18 9 Z"/>
+      <path d="M46 8 L47.4 12.6 L52 14 L47.4 15.4 L46 20 L44.6 15.4 L40 14 L44.6 12.6 Z"/>
+      <path d="M32 18 L32.9 21 L36 22 L32.9 23 L32 26 L31.1 23 L28 22 L31.1 21 Z"/>
+    </g>
+  </svg>
+
+  <img class="illustration banner" src="assets/img/banner-novios.jpg" alt="Ilustración de Javier y Catalina sentados, entregándose una flor">
+  <p class="planet-phrase">Qué bonito coincidir en este pequeño planeta.</p>
+
+  <p class="eyebrow">Nos casamos.</p>
+  <h1 class="names">Javier<span class="amp">&amp;</span>Catalina</h1>
+  <p class="date-big">19.12.26</p>
+</div>
+
+<!-- ============ MENSAJE ============ -->
+<section id="mensaje">
+  <p class="love-msg reveal">
+    Somos amantes del amor, de los amigos y de la familia. Hoy queremos celebrar un paso que
+    para nosotros tiene un significado especial: elegirnos y comprometernos a seguir construyendo
+    juntos nuestra historia.
+    <br><br>
+    Queremos que este momento sea también un rito compartido con quienes han sido parte de nuestro
+    camino; una oportunidad para detenernos, agradecer y celebrar todo lo que nos ha traído hasta
+    aquí en una noche inolvidable.
+    <span class="sign">Javier &amp; Catalina</span>
+  </p>
+</section>
+
+<!-- ============ GALERÍA ============ -->
+<section id="galeria">
+  <div class="divider reveal"></div>
+  <h2 class="section-title reveal">Galería</h2>
+  <p class="section-sub reveal">algunos momentos nuestros</p>
+
+  <div class="gallery-grid reveal" id="gallery-grid">
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-01.jpg">
+      <img src="assets/img/galeria/foto-01.jpg" alt="Javier y Catalina en una cascada">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-02.jpg">
+      <img src="assets/img/galeria/foto-02.jpg" alt="Javier y Catalina junto a un río, en la montaña">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-03.jpg">
+      <img src="assets/img/galeria/foto-03.jpg" alt="Catalina de niña, jugando en el jardín">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-04.jpg">
+      <img src="assets/img/galeria/foto-04.jpg" alt="Javier de niño, al atardecer">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-05.jpg">
+      <img src="assets/img/galeria/foto-05.jpg" alt="Javier de niño, vestido de huaso">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-06.jpg">
+      <img src="assets/img/galeria/foto-06.jpg" alt="Catalina de niña, junto al lago">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-07.jpg">
+      <img src="assets/img/galeria/foto-07.jpg" alt="Javier y Catalina en una terraza">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-08.jpg">
+      <img src="assets/img/galeria/foto-08.jpg" alt="Javier y Catalina buceando">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-09.jpg">
+      <img src="assets/img/galeria/foto-09.jpg" alt="Javier y Catalina en la nieve">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-10.jpg">
+      <img src="assets/img/galeria/foto-10.jpg" alt="Javier y Catalina en el teatro">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-11.jpg">
+      <img src="assets/img/galeria/foto-11.jpg" alt="Javier y Catalina viendo Santiago desde un cerro">
+    </button>
+    <button type="button" class="gallery-item" data-full="assets/img/galeria/foto-12.jpg">
+      <img src="assets/img/galeria/foto-12.jpg" alt="Javier y Catalina haciendo yoga">
+    </button>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Cerrar">&times;</button>
+  <img src="" alt="" id="lightbox-img">
+</div>
+
+<!-- ============ DETALLES ============ -->
+<section id="detalles">
+  <div class="divider reveal"></div>
+  <h2 class="section-title reveal">Detalles</h2>
+  <p class="section-sub reveal">del gran día</p>
+
+  <div class="reveal">
+    <div class="detail-row">
+      <span class="detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span>
+      <div>
+        <p class="detail-title">Sábado 19 de diciembre, 2026</p>
+        <p class="detail-text">Celebración a partir de las 22:30 hrs.</p>
+      </div>
+    </div>
+    <div class="detail-row">
+      <span class="detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg></span>
+      <div>
+        <p class="detail-title">Casa Granada, Paine</p>
+        <p class="detail-text">Te esperamos para bailar toda la noche.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row reveal" style="margin-top: 30px;">
+    <a class="btn outline" href="https://maps.app.goo.gl/sQavnorfaM9fpg399" target="_blank" rel="noopener">Cómo llegar</a>
+  </div>
+</section>
+
+<!-- ============ ITINERARIO ============ -->
+<section id="itinerario">
+  <div class="divider reveal"></div>
+  <h2 class="section-title reveal">Itinerario</h2>
+  <p class="section-sub reveal">cómo se irá dando la noche</p>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <p class="timeline-time">22:30 hrs</p>
+      <p class="timeline-text">¡Empieza la fiesta!</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-time">03:30 hrs</p>
+      <p class="timeline-text">Cierre de la celebración.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DRESS CODE ============ -->
+<section id="dresscode">
+  <div class="divider reveal"></div>
+  <h2 class="section-title reveal">Dress code</h2>
+  <p class="section-sub reveal">formal, a tu manera</p>
+
+  <div class="dresscode-box reveal">
+    <p>
+      La ceremonia y la cena serán al aire libre, así que evita los tacos de punta
+      para no quedar enterrada en el pasto. Es formal, pero por sobre todo,
+      ven como te sientas cómodo.
+    </p>
+    <span class="dresscode-tag">Formal</span>
+  </div>
+</section>
+
+<!-- ============ RECOMENDACIONES ============ -->
+<section id="recomendaciones">
+  <div class="divider reveal"></div>
+  <h2 class="section-title reveal">Recomendaciones</h2>
+  <p class="section-sub reveal">para que disfrutes sin preocupaciones</p>
+
+  <ul class="rec-list reveal">
+    <li>
+      <span class="rec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="9" width="18" height="10" rx="2"/><path d="M5 9l2-5h10l2 5M7 14h.01M17 14h.01"/></svg></span>
+      <div>
+        <p class="rec-title">Estacionamiento y vuelta segura</p>
+        <p class="rec-text">
+          El lugar cuenta con múltiples estacionamientos. Para que puedas disfrutar sin preocuparte de manejar,
+          te dejamos algunos "angelitos" (choferes de reemplazo) recomendados — revisa también si tu seguro de auto
+          incluye este servicio gratis un par de veces al año.
+        </p>
+        <div class="rec-links">
+          <a href="https://www.mivuelta.cl/" target="_blank" rel="noopener">Mi Vuelta</a>
+          <a href="https://vueltasegura.cl/" target="_blank" rel="noopener">Vuelta Segura</a>
+          <a href="https://www.tuangelito.cl/" target="_blank" rel="noopener">Tu Angelito</a>
+        </div>
+      </div>
+    </li>
+    <li>
+      <span class="rec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12A8 8 0 1 1 8.5 4.3 6.5 6.5 0 0 0 20 12Z"/></svg></span>
+      <div>
+        <p class="rec-title">Lleva un abrigo liviano</p>
+        <p class="rec-text">La fiesta se extiende hasta las 03:30 am y refresca en la noche, así que un abrigo ligero te vendrá bien.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ REGALOS ============ -->
+<section id="regalos">
+  <div class="divider reveal"></div>
+  <h2 class="section-title reveal">Regalos</h2>
+  <p class="section-sub reveal">tu presencia es lo más importante</p>
+
+  <div class="gift-options reveal">
+    <div class="gift-card">
+      <h3>Lista de novios</h3>
+      <p>Si quieres regalarnos algo, dejamos preparada una lista con cariño.</p>
+      <a class="btn" href="https://club.noviosparis.cl/home/couple-catalog/21049336" target="_blank" rel="noopener">Ver lista de regalos</a>
+    </div>
+    <div class="gift-card">
+      <h3>Transferencia</h3>
+      <p>También puedes hacernos llegar tu regalo directamente.</p>
+      <div class="bank-details" id="bank-details">
+        <div><span class="k">Nombre</span><span>Catalina Molina</span></div>
+        <div><span class="k">Rut</span><span>19.686.964-6</span></div>
+        <div><span class="k">Banco</span><span>Mercado Pago (Cta. Vista)</span></div>
+        <div><span class="k">N° cuenta</span><span>00-100-63461-81</span></div>
+        <div><span class="k">Correo</span><span>cata.molina97@gmail.com</span></div>
+      </div>
+      <button class="copy-btn" id="copy-bank-btn" type="button">Copiar datos</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMPIEZA A PRACTICAR ============ -->
+<section id="cancion">
+  <div class="divider reveal"></div>
+  <h2 class="section-title reveal">Empieza a practicar los pasos</h2>
+  <p class="section-sub reveal">la que no puede faltar en la pista</p>
+
+  <div class="song-wrap reveal">
+    <iframe
+      style="border-radius:12px"
+      src="https://open.spotify.com/embed/track/2lTm559tuIvatlT1u0JYG2?utm_source=generator"
+      width="100%" height="152" frameborder="0"
+      allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
+  </div>
+  <p class="song-fallback reveal">
+    ¿No carga? <a href="https://www.youtube.com/watch?v=a1Femq4NPxs&t=64s" target="_blank" rel="noopener">Escúchala en YouTube</a>
+  </p>
+</section>
+
+<!-- ============ RSVP ============ -->
+<section id="rsvp">
+  <div class="divider reveal"></div>
+  <h2 class="section-title reveal">Confirma tu asistencia</h2>
+  <p class="section-sub reveal">te esperamos con muchas ganas</p>
+
+  <form class="rsvp reveal" id="rsvp-form">
+    <div class="field">
+      <label for="f-attend">¿Podrás acompañarnos?</label>
+      <select id="f-attend" name="asistencia" required>
+        <option value="" disabled selected>Elige una opción</option>
+        <option value="Sí">❤️ Sí, feliz estaré ahí.</option>
+        <option value="No">😢 Lamentablemente no podré asistir.</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="f-name">Nombre y apellido</label>
+      <input type="text" id="f-name" name="nombre" required>
+    </div>
+
+    <div id="attend-yes-fields" class="conditional-fields hidden">
+      <div class="field">
+        <label for="f-allergy">¿Tienes alguna alergia o intolerancia alimentaria?</label>
+        <input type="text" id="f-allergy" name="alergias" placeholder="Ej.: frutos secos, gluten, mariscos, ninguna.">
+      </div>
+
+      <div class="field">
+        <label for="f-message">Un mensajito para los novios</label>
+        <textarea id="f-message" name="mensaje" placeholder="Escribe aquí tus buenos deseos..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="f-song">Una canción que no puede faltar</label>
+        <input type="text" id="f-song" name="cancion" placeholder="Nombre de la canción y artista">
+      </div>
+
+      <div class="playlist-box">
+        <span class="playlist-icon">🎵</span>
+        <div>
+          <p class="playlist-title">Mientras esperas, súmate a la playlist</p>
+          <p class="playlist-sub">que han ido armando los invitados</p>
+        </div>
+        <a class="btn" href="https://open.spotify.com/playlist/4Wf3EUFmUGB0NWVwfzomkd?si=3369b945bdf444fd" target="_blank" rel="noopener">Escuchar playlist</a>
+      </div>
+    </div>
+
+    <div id="attend-no-fields" class="conditional-fields hidden">
+      <div class="field">
+        <label for="f-message-no">Un mensajito para nosotros (opcional)</label>
+        <textarea id="f-message-no" name="mensaje_no" placeholder="Escribe aquí si quieres dejarnos unas palabras..."></textarea>
+      </div>
+    </div>
+
+    <div class="rsvp-submit">
+      <button class="btn" type="submit">Enviar confirmación</button>
+    </div>
+    <p class="rsvp-note">Por favor confirma antes del 15 de noviembre.</p>
+    <p id="rsvp-msg"></p>
+  </form>
+</section>
+
+<!-- ============ COUNTDOWN ============ -->
+<section id="countdown-section">
+  <div class="divider reveal"></div>
+  <h2 class="section-title reveal">Falta poco</h2>
+  <p class="section-sub reveal">para celebrar juntos</p>
+  <div class="countdown reveal">
+    <div class="unit"><span class="num" id="cd-days">00</span><span class="lbl">Días</span></div>
+    <div class="unit"><span class="num" id="cd-hours">00</span><span class="lbl">Horas</span></div>
+    <div class="unit"><span class="num" id="cd-mins">00</span><span class="lbl">Min</span></div>
+    <div class="unit"><span class="num" id="cd-secs">00</span><span class="lbl">Seg</span></div>
+  </div>
+</section>
+
+<footer>
+  <span class="fname">Javier &amp; Catalina</span>
+  <small>19 · 12 · 2026 — Paine, Santiago</small>
+</footer>
+
+</div>
+
+<script>
+  // ---- reveal on scroll ----
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ---- galería / lightbox ----
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.gallery-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      lightboxImg.src = btn.dataset.full;
+      lightboxImg.alt = btn.querySelector('img').alt;
+      lightbox.classList.add('open');
+    });
+  });
+  document.getElementById('lightbox-close').addEventListener('click', () => {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  });
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) { lightbox.classList.remove('open'); lightboxImg.src = ''; }
+  });
+
+  // ---- countdown ----
+  const weddingDate = new Date('2026-12-19T22:30:00-03:00'); // hora de Chile
+  function updateCountdown(){
+    const now = new Date();
+    let diff = weddingDate - now;
+    if (diff < 0) diff = 0;
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ---- copy bank details ----
+  document.getElementById('copy-bank-btn').addEventListener('click', () => {
+    const text = [
+      'Nombre: Catalina Molina',
+      'Rut: 19.686.964-6',
+      'Banco: Mercado Pago - Cuenta Vista',
+      'N° de cuenta: 00-100-63461-81',
+      'Correo: cata.molina97@gmail.com'
+    ].join('\n');
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-bank-btn');
+      const original = btn.textContent;
+      btn.textContent = '¡Copiado!';
+      setTimeout(() => { btn.textContent = original; }, 1800);
+    });
+  });
+
+  // ---- RSVP submit -> Google Apps Script Web App ----
+  // Reemplaza el valor de abajo por la URL de tu Web App de Apps Script
+  // (ver instrucciones que te dio Claude para configurarlo).
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwlU4xh2l7sIDJDsfg0gt_eLTCmlyHSvSxTg2jAlUo6DstByS2O0HGzSBEgNcRMC7I52g/exec';
+
+  const form = document.getElementById('rsvp-form');
+  const msg = document.getElementById('rsvp-msg');
+  const attendSelect = document.getElementById('f-attend');
+  const yesFields = document.getElementById('attend-yes-fields');
+  const noFields = document.getElementById('attend-no-fields');
+
+  attendSelect.addEventListener('change', function(){
+    if (this.value === 'Sí') {
+      yesFields.classList.remove('hidden');
+      noFields.classList.add('hidden');
+    } else if (this.value === 'No') {
+      noFields.classList.remove('hidden');
+      yesFields.classList.add('hidden');
+    } else {
+      yesFields.classList.add('hidden');
+      noFields.classList.add('hidden');
+    }
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (GOOGLE_SCRIPT_URL === 'PEGA_AQUI_TU_URL_DE_APPS_SCRIPT') {
+      msg.className = 'err';
+      msg.textContent = 'Falta configurar la conexión con Google Sheets (ver instrucciones).';
+      return;
+    }
+    const btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    const data = new FormData(form);
+    const asistira = data.get('asistencia') === 'Sí';
+
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: data
+    }).then(() => {
+      msg.className = 'ok';
+      msg.textContent = asistira
+        ? '❤️ ¡Muchas gracias! Estamos muy felices de que seas parte de este día. Nos vemos el 19 de diciembre.'
+        : '❤️ Gracias por avisarnos. Te vamos a echar de menos, pero esperamos verte muy pronto.';
+      form.reset();
+    }).catch(() => {
+      msg.className = 'err';
+      msg.textContent = 'Hubo un problema al enviar. Inténtalo de nuevo.';
+    }).finally(() => {
+      btn.disabled = false;
+      btn.textContent = 'Enviar confirmación';
+    });
+  });
+</script>
+
+</body>
+</html>
